@@ -9,9 +9,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class BancoApplicationTests {
 
+//	@Autowired
+//	private ContaService contaService;
 	@Test
 	public void contextLoads() {
-		System.out.println("testando: contextLoads");
+//		Assert.assertTrue("Lista vazia", contaService.findAll().isEmpty());
 	}
 
 }
