@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.desafio.dto.ContaDTO;
 import com.capgemini.desafio.dto.MovimentacaoDTO;
+import com.capgemini.desafio.exception.BancoException;
 import com.capgemini.desafio.model.Conta;
 import com.capgemini.desafio.service.DepositoService;
 import com.capgemini.desafio.service.SaqueService;
@@ -39,7 +40,12 @@ public class MovimentacaoController implements Serializable{
 	
 	@PutMapping(value="withdrawal")
 	public ResponseEntity<ContaDTO> withdraw(@Valid @RequestBody MovimentacaoDTO dto) {
-		return new ResponseEntity<>(convertToDto(saqueService.movimentar(dto)), HttpStatus.CREATED);
+		try {
+			return new ResponseEntity<>(convertToDto(saqueService.movimentar(dto)), HttpStatus.CREATED);
+		}catch(BancoException e) {
+			throw new BancoException(e.getMessage());
+		}
+		
 	}
 	
 	@PutMapping(value="deposits")

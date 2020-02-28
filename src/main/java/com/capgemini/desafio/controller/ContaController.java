@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.desafio.dto.ContaDTO;
+import com.capgemini.desafio.exception.BancoException;
 import com.capgemini.desafio.model.Conta;
 import com.capgemini.desafio.service.ContaService;
 
@@ -39,9 +40,14 @@ public class ContaController implements Serializable{
 	
 	@GetMapping("{banco}/{agencia}/{conta}")
     public ResponseEntity<ContaDTO> findById(@PathVariable("banco") Integer banco, @PathVariable("agencia") Short agencia, @PathVariable("conta") Integer numConta) {
-		return service.findById(banco, agencia, numConta)
-	            .map(obj -> new ResponseEntity<>(convertToDto(obj), HttpStatus.FOUND))
-	            .orElse(ResponseEntity.notFound().build());
+		try {
+			return service.findById(banco, agencia, numConta)
+		            .map(obj -> new ResponseEntity<>(convertToDto(obj), HttpStatus.FOUND))
+		            .orElse(ResponseEntity.notFound().build());
+		}catch(BancoException ex) {
+			throw new BancoException(ex.getMessage());
+		}
+		
     }
 	
 	private ContaDTO convertToDto(Conta conta) {

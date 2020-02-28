@@ -20,7 +20,6 @@ public class Conta implements Serializable{
 	private ContaID id;
 	private BigDecimal saldo = BigDecimal.ZERO;
 	
-	
 	public Conta() {
 		this.id = new ContaID();
 	}

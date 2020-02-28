@@ -45,7 +45,4 @@ public class ContaID implements Serializable{
 		this.numConta = numConta;
 	}
 
-	
-	
-
 }

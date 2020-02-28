@@ -9,6 +9,7 @@ public class ContaDTO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5405498089784436619L;
+	
 	private Integer idBanco;
 	private Short idAgencia;
 	private Integer idNumConta;

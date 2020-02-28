@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.desafio.dao.ContaDAO;
+import com.capgemini.desafio.exception.BancoException;
 import com.capgemini.desafio.model.Conta;
 import com.capgemini.desafio.model.ContaID;
 
@@ -24,7 +25,7 @@ public class ContaService implements Serializable{
 	private ContaDAO contaDAO;
 	
 	public Optional<Conta> findById(ContaID id) {
-		return contaDAO.findById(id);
+		return Optional.of(contaDAO.findById(id).orElseThrow(()-> new BancoException("Conta não localizada")));
 	}
 	
 	public Optional<Conta> findById(Integer banco, Short agencia, Integer numConta){
