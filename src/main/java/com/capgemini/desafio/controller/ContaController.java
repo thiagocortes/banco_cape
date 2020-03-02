@@ -35,14 +35,14 @@ public class ContaController implements Serializable{
 	@GetMapping
     public ResponseEntity<List<ContaDTO>> findAll() {
 		List<Conta> contas = service.findAll();
-        return new ResponseEntity<>(contas.stream().map(this::convertToDto).collect(Collectors.toList()), HttpStatus.FOUND);
+        return new ResponseEntity<>(contas.stream().map(this::convertToDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 	
 	@GetMapping("{banco}/{agencia}/{conta}")
     public ResponseEntity<ContaDTO> findById(@PathVariable("banco") Integer banco, @PathVariable("agencia") Short agencia, @PathVariable("conta") Integer numConta) {
 		try {
 			return service.findById(banco, agencia, numConta)
-		            .map(obj -> new ResponseEntity<>(convertToDto(obj), HttpStatus.FOUND))
+		            .map(obj -> new ResponseEntity<>(convertToDto(obj), HttpStatus.OK))
 		            .orElse(ResponseEntity.notFound().build());
 		}catch(BancoException ex) {
 			throw new BancoException(ex.getMessage());
