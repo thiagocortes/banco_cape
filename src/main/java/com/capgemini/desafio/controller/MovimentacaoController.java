@@ -45,7 +45,6 @@ public class MovimentacaoController implements Serializable{
 		}catch(BancoException e) {
 			throw new BancoException(e.getMessage());
 		}
-		
 	}
 	
 	@PutMapping(value="deposits")

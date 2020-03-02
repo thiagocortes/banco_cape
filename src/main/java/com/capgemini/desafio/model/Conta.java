@@ -23,6 +23,16 @@ public class Conta implements Serializable{
 	public Conta() {
 		this.id = new ContaID();
 	}
+	
+	public ContaID getId() {
+		return id;
+	}
+
+	public void setId(ContaID id) {
+		this.id = id;
+	}
+
+
 	public Conta(Integer banco, Short agencia, Integer numConta, BigDecimal saldo) {
 		super();
 		this.id = new ContaID(banco, agencia, numConta);

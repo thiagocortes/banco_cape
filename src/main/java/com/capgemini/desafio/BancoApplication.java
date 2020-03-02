@@ -30,9 +30,9 @@ public class BancoApplication implements CommandLineRunner {
 	
 	@Override
     public void run(String... args) throws Exception {
-		Conta conta1 = new Conta(103, Short.valueOf(""+3040), 2221, BigDecimal.ZERO);
+		Conta conta1 = new Conta(103, Short.valueOf(""+3040), 2221, BigDecimal.TEN);
 		Conta conta2 = new Conta(103, Short.valueOf(""+3040), 2222, BigDecimal.ZERO);
-		Conta conta3 = new Conta(103, Short.valueOf(""+3004), 2223, BigDecimal.ZERO);
+		Conta conta3 = new Conta(103, Short.valueOf(""+3004), 2223, new BigDecimal(12.5));
 		Conta conta4 = new Conta(103, Short.valueOf(""+3004), 2224, BigDecimal.ZERO);
 		contaService.salvar(conta1);
 		contaService.salvar(conta2);
